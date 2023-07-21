@@ -1,4 +1,5 @@
 build
+full-system-image
 parser.out
 parsetab.py
 cscope.files
@@ -8,7 +9,6 @@ cscope.out
 .*.swp
 .*.swo
 m5out
-full-system-image
 /src/doxygen/html
 /ext/dramsim2/DRAMSim2
 /ext/mcpat/regression/*/*.out
