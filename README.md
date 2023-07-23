@@ -28,7 +28,7 @@ Some may fail to be installed because your tools versions(such as g++ etc) is hi
 After installing the dependencies, you can ues the following command to build.
 
 ```
-scons build/X86/gem.opt -j <your cores + 1>
+scons build/X86/gem5.opt -j <your cores + 1>
 ```
 
 
