@@ -55,8 +55,8 @@ DebugFlag('Intel8254Timer')
 DebugFlag('MC146818')
 
 # add for PciBridge
-SimObject('PciBridge')
-Source('PciBridge.py')
+SimObject('PciBridge.py',sim_objects=['PciBridge'])
+Source('PciBridge.cc')
 DebugFlag('PciBridge')
 
 

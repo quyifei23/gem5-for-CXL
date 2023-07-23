@@ -3,7 +3,7 @@ from m5.params import *
 
 class PciBridge(SimObject):
     type = 'PciBridge'
-    cxx_class = 'PciBridge'
+    cxx_class = 'gem5::PciBridge'
     cxx_header = 'dev/PciBridge.hh'
     
     receiveUpPort = ResponsePort("receive port up")

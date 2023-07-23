@@ -1,7 +1,6 @@
 #ifndef __MEM_PCIBRIDGE_HH__
 #define __MEM_PCIBRIDGE_HH__
 
-#include <deque>
 #include "base/types.hh"
 #include "params/PciBridge.hh"
 #include "mem/port.hh"
@@ -9,6 +8,8 @@
 
 namespace gem5
 {
+    class PciBridge;
+
     class PciBridge : public SimObject
     {
         /**
@@ -22,9 +23,7 @@ namespace gem5
         //         const PacketPtr pkt;
         //         DeferredPacket(PacketPtr _pkt,Tick _tick) : tick(_tick),pkt(_pkt){}
         // };
-        class PciBridgeReceivePort;
-        class PciBridgeSendPort;
-        class PciBridgeReceivePort : public RequestPort
+        class PciBridgeReceivePort : public ResponsePort
         {
             private:
                 PciBridge& bridge;
@@ -48,7 +47,7 @@ namespace gem5
 
                 // EventFunctionWrapper sendEvent;
             public:
-                PciBridgeReceivePort(const std::string& _name,PciBridge& _bridge, uint8_t receiveID)
+                PciBridgeReceivePort(const std::string& _name,PciBridge& _bridge, uint8_t receiveID);
                 uint8_t receiveID;
             protected:
                 /** When receiving a timing request from the peer port,
@@ -70,39 +69,42 @@ namespace gem5
                 /** When receiving a address range request the peer port,
                     pass it to the bridge. */
                 AddrRangeList getAddrRanges() const;
+
+
                 
 
-        }
+        };
         class PciBridgeSendPort : public RequestPort
         {
             private:
                 PciBridge& bridge;
             public:
-                PciBridgeSendPort(const std::string& _name,PciBridge& _bridge)
-        }
-        public:
-            PciBridge(const PciBridgeParams *params);
+                PciBridgeSendPort(const std::string& _name,PciBridge& _bridge);
         
-        protected:
+            protected:
 
-            /** When receiving a timing request from the peer port,
-                pass it to the bridge. */
-            bool recvTimingResp(PacketPtr pkt);
+                /** When receiving a timing request from the peer port,
+                    pass it to the bridge. */
+                bool recvTimingResp(PacketPtr pkt);
 
-            /** When receiving a retry request from the peer port,
-                pass it to the bridge. */
-            void recvReqRetry();
-    }
-    public:
-        PciBridgeSendPort SendUpPort;
-        PciBridgeReceivePort ReceiveUpPort;
-        PciBridgeSendPort SendDownPort1;
-        PciBridgeReceivePort ReceiveDownPort1;
-        PciBridgeSendPort SendDownPort2;
-        PciBridgeReceivePort ReceiveDownPort2;
-        PciBridgeSendPort SendDownPor3;
-        PciBridgeReceivePort ReceiveDownPort3;
-        PciBridge(const PciBridgeParams *p);
+                /** When receiving a retry request from the peer port,
+                    pass it to the bridge. */
+                void recvReqRetry();
+        };
+        
+        public:
+            PciBridgeSendPort sendUpPort;
+            PciBridgeReceivePort receiveUpPort;
+            PciBridgeSendPort sendDownPort1;
+            PciBridgeReceivePort receiveDownPort1;
+            PciBridgeSendPort sendDownPort2;
+            PciBridgeReceivePort receiveDownPort2;
+            PciBridgeSendPort sendDownPort3;
+            PciBridgeReceivePort receiveDownPort3;
+            
+            PciBridge(const PciBridgeParams & p);
+            ~PciBridge();
+    };
 }
 
 #endif
