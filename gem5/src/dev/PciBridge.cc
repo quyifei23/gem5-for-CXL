@@ -17,14 +17,14 @@ namespace gem5
 
     PciBridge::PciBridge(const PciBridgeParams & p)
     : SimObject(p),
-    sendUpPort(p.name + ".sendUpPort",*this),
-    receiveUpPort(p.name + ".receiveUpPort",*this,0),
-    sendDownPort1(p.name + ".sendDownPort1",*this),
-    receiveDownPort1(p.name + ".receiveDownPort1",*this,1),
-    sendDownPort2(p.name + ".sendDownPort2",*this),
-    receiveDownPort2(p.name + ".receiveDownPort2",*this,2),
-    sendDownPort3(p.name + ".sendDownPort3",*this),
-    receiveDownPort3(p.name + ".receiveDownPort3",*this,3)
+    sendUpPort(name() + ".sendUpPort",*this),
+    receiveUpPort(name() + ".receiveUpPort",*this,0),
+    sendDownPort1(name() + ".sendDownPort1",*this),
+    receiveDownPort1(name() + ".receiveDownPort1",*this,1),
+    sendDownPort2(name() + ".sendDownPort2",*this),
+    receiveDownPort2(name() + ".receiveDownPort2",*this,2),
+    sendDownPort3(name() + ".sendDownPort3",*this),
+    receiveDownPort3(name() + ".receiveDownPort3",*this,3)
     {
         DPRINTF(PciBridge,"create the PciBridge\n");
     }

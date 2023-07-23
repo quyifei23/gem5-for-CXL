@@ -49,8 +49,16 @@ system.system_port = system.membus.cpu_side_ports
 
 # create the PciBridge
 system.PciBridge = PciBridge()
-system.PciBridge.sendUpPort = system.membus.cpu_side_ports
-system.PciBridge.receiveUpPort = system.membus.mem_side_ports
+system.PciBridge.sendUpPort
+system.PciBridge.receiveUpPort
+system.PciBridge.sendDownPort1
+system.PciBridge.receiveDownPort1
+system.PciBridge.sendDownPort2
+system.PciBridge.receiveDownPort2
+system.PciBridge.sendDownPort3
+system.PciBridge.receiveDownPort3
+# system.PciBridge.sendUpPort = system.membus.cpu_side_ports
+# system.PciBridge.receiveUpPort = system.membus.mem_side_ports
 
 
 # Here we set the X86 "hello world" binary. With other ISAs you must specify
