@@ -59,6 +59,11 @@ SimObject('PciBridge.py',sim_objects=['PciBridge'])
 Source('PciBridge.cc')
 DebugFlag('PciBridge')
 
+# add for PciBridge2
+SimObject('PciBridge2.py',sim_objects=['PciBridge2'])
+Source('PciBridge2.cc')
+DebugFlag('PciBridge2')
+
 
 
 GTest('reg_bank.test', 'reg_bank.test.cc')

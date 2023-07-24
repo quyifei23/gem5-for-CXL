@@ -44,9 +44,11 @@
 #include "dev/platform.hh"
 #include "params/GenericPciHost.hh"
 #include "params/PciHost.hh"
+#include "params/PciHost.hh"
 
 namespace gem5
 {
+
 
 PciHost::PciHost(const PciHostParams &p)
     : PioDevice(p)
@@ -70,6 +72,19 @@ PciHost::registerDevice(PciDevice *device, PciBusAddr bus_addr, PciIntPin pin)
              bus_addr.bus, bus_addr.dev, bus_addr.func);
 
     return DeviceInterface(*this, bus_addr, pin);
+}
+
+void PciHost::registerBridge(config_class *bridge , PciBusAddr bus_Addr)
+{
+  auto map_entry = bridges.emplace(bus_Addr , bridge) ;  // create a map entry with the key as the PCIBusAddr (since this is unique) and value as a pointer to the config class object that called this function
+   printf("%02x:%02x.%i: Registering Bridge\n",
+            bus_Addr.bus, bus_Addr.dev, bus_Addr.func);
+    DPRINTF(PciHost, "%02x:%02x.%i: Registering Bridge\n",
+            bus_Addr.bus, bus_Addr.dev, bus_Addr.func);
+
+    fatal_if(!map_entry.second,
+             "%02x:%02x.%i: PCI bus ID collision\n",
+             bus_Addr.bus, bus_Addr.dev, bus_Addr.func);
 }
 
 PciDevice *

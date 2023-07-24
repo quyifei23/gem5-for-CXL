@@ -53,51 +53,116 @@
             "remote_gdb_port": "#7000",
             "wait_for_remote_gdb": false
         },
-        "PciBridge": {
-            "type": "PciBridge",
-            "cxx_class": "gem5::PciBridge",
-            "name": "PciBridge",
-            "path": "system.PciBridge",
+        "PciHost": {
+            "type": "PciHost",
+            "cxx_class": "gem5::PciHost",
+            "name": "PciHost",
+            "path": "system.PciHost",
+            "clk_domain": "system.clk_domain",
             "eventq_index": 0,
-            "receiveDownPort1": {
-                "role": "GEM5 RESPONDER",
-                "peer": "None",
-                "is_source": "False"
+            "power_model": [],
+            "power_state": {
+                "type": "PowerState",
+                "cxx_class": "gem5::PowerState",
+                "name": "power_state",
+                "path": "system.PciHost.power_state",
+                "clk_gate_bins": 20,
+                "clk_gate_max": 1000000000000,
+                "clk_gate_min": 1000,
+                "default_state": "UNDEFINED",
+                "eventq_index": 0,
+                "leaders": [],
+                "possible_states": []
             },
-            "receiveDownPort2": {
-                "role": "GEM5 RESPONDER",
-                "peer": "None",
-                "is_source": "False"
-            },
-            "receiveDownPort3": {
-                "role": "GEM5 RESPONDER",
-                "peer": "None",
-                "is_source": "False"
-            },
-            "receiveUpPort": {
-                "role": "GEM5 RESPONDER",
-                "peer": "None",
-                "is_source": "False"
-            },
-            "sendDownPort1": {
+            "system": "system"
+        },
+        "RootComplex": {
+            "type": "PciBridge2",
+            "cxx_class": "gem5::PciBridge2",
+            "name": "RootComplex",
+            "path": "system.RootComplex",
+            "BAR0Size": 0,
+            "BAR1Size": 0,
+            "BIST": 0,
+            "Bar0": 0,
+            "Bar1": 0,
+            "BridgeControl": 0,
+            "CacheLineSize": 0,
+            "CapabilityPointer": 208,
+            "ClassCode": 6,
+            "Command": 1031,
+            "DeviceId1": 40080,
+            "DeviceId2": 40082,
+            "DeviceId3": 40084,
+            "DeviceId_upstream": 33330,
+            "ExpansionROMBaseAddress": 0,
+            "HeaderType": 1,
+            "IOBase": 1,
+            "IOBaseUpper": 12032,
+            "IOLimit": 1,
+            "IOLimitUpper": 12032,
+            "InterruptLine": 32,
+            "InterruptPin": 1,
+            "LatencyTimer": 0,
+            "MemoryBase": 0,
+            "MemoryLimit": 0,
+            "PXCAPBaseOffset": 208,
+            "PXCAPCapId": 16,
+            "PXCAPCapabilities": 65,
+            "PXCAPCapabilities_downstream": 97,
+            "PXCAPCapabilities_upstream": 81,
+            "PXCAPDevCap2": 0,
+            "PXCAPDevCapabilities": 577,
+            "PXCAPDevCtrl": 4128,
+            "PXCAPDevCtrl2": 0,
+            "PXCAPDevStatus": 0,
+            "PXCAPLinkCap": 16814097,
+            "PXCAPLinkCtrl": 8,
+            "PXCAPLinkStatus": 17,
+            "PXCAPNextCapability": 0,
+            "PXCAPRootControl": 0,
+            "PXCAPRootStatus": 0,
+            "PrefetchableMemoryBase": 0,
+            "PrefetchableMemoryBaseUpper": 0,
+            "PrefetchableMemoryLimit": 0,
+            "PrefetchableMemoryLimitUpper": 0,
+            "PrimaryBusNumber": 0,
+            "ProgIF": 0,
+            "Revision": 0,
+            "SecondaryBusNumber": 0,
+            "SecondaryLatencyTimer": 0,
+            "SecondaryStatus": 0,
+            "Status": 16,
+            "SubClassCode": 4,
+            "SubordinateBusNumber": 0,
+            "VendorId": 32902,
+            "config_latency": 20000,
+            "delay": 0,
+            "eventq_index": 0,
+            "host": "system.PciHost",
+            "is_switch": 0,
+            "is_transmit": 0,
+            "pci_bus": 0,
+            "pci_dev1": 4,
+            "pci_dev2": 5,
+            "pci_dev3": 6,
+            "pci_func1": 0,
+            "pci_func2": 0,
+            "pci_func3": 0,
+            "pci_upstream_dev": 0,
+            "pci_upstream_func": 0,
+            "rc_id": 0,
+            "req_size": 16,
+            "resp_size": 16,
+            "request_dma": {
                 "role": "GEM5 REQUESTOR",
-                "peer": "None",
+                "peer": "system.membus.cpu_side_ports[4]",
                 "is_source": "True"
             },
-            "sendDownPort2": {
-                "role": "GEM5 REQUESTOR",
-                "peer": "None",
-                "is_source": "True"
-            },
-            "sendDownPort3": {
-                "role": "GEM5 REQUESTOR",
-                "peer": "None",
-                "is_source": "True"
-            },
-            "sendUpPort": {
-                "role": "GEM5 REQUESTOR",
-                "peer": "None",
-                "is_source": "True"
+            "response": {
+                "role": "GEM5 RESPONDER",
+                "peer": "system.membus.mem_side_ports[3]",
+                "is_source": "False"
             }
         },
         "clk_domain": {
@@ -570,7 +635,8 @@
                     "system.cpu.icache_port",
                     "system.cpu.dcache_port",
                     "system.cpu.interrupts.int_requestor",
-                    "system.system_port"
+                    "system.system_port",
+                    "system.RootComplex.request_dma"
                 ],
                 "is_source": "False"
             },
@@ -579,7 +645,8 @@
                 "peer": [
                     "system.cpu.interrupts.pio",
                     "system.cpu.interrupts.int_responder",
-                    "system.mem_ctrl.port"
+                    "system.mem_ctrl.port",
+                    "system.RootComplex.response"
                 ],
                 "is_source": "True"
             }

@@ -48,15 +48,27 @@ system.system_port = system.membus.cpu_side_ports
 
 
 # create the PciBridge
-system.PciBridge = PciBridge()
-system.PciBridge.sendUpPort
-system.PciBridge.receiveUpPort
-system.PciBridge.sendDownPort1
-system.PciBridge.receiveDownPort1
-system.PciBridge.sendDownPort2
-system.PciBridge.receiveDownPort2
-system.PciBridge.sendDownPort3
-system.PciBridge.receiveDownPort3
+# system.PciBridge = PciBridge()
+# system.PciBridge.sendUpPort
+# system.PciBridge.receiveUpPort
+# system.PciBridge.sendDownPort1
+# system.PciBridge.receiveDownPort1
+# system.PciBridge.sendDownPort2
+# system.PciBridge.receiveDownPort2
+# system.PciBridge.sendDownPort3
+# system.PciBridge.receiveDownPort3
+
+# try to create a PciHost for the system
+system.realview = platform_class()
+# use the version2 Pcibridge
+system.RootComplex = RootComplex()
+# system.Switch = Switch()
+
+system.RootComplex.response = system.membus.mem_side_ports
+system.RootComplex.request_dma = system.membus.cpu_side_ports
+
+# system.RootComplex.request1 = system.Switch.response
+# system.RootComplex.response_dma1 = system.Switch.request_dma
 # system.PciBridge.sendUpPort = system.membus.cpu_side_ports
 # system.PciBridge.receiveUpPort = system.membus.mem_side_ports
 
