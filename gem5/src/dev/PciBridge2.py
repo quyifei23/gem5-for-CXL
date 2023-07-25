@@ -22,7 +22,7 @@ class PciBridge2(SimObject):
     pci_func2 = Param.Int("PCI func number")
     pci_dev3  = Param.Int("PCi dev")
     pci_func3 = Param.Int("PCI function") 
-    host = Param.PciHost(Parent.any, "PCI host")
+    # host = Param.PciHost(Parent.any, "PCI host")
     DeviceId1 = Param.UInt16("Bridge's device id") # For Root port 1
     DeviceId2 = Param.UInt16("Bridge's device id") #For Root port 2
     DeviceId3 = Param.UInt16("Bridge's device id") #For Root port 3
@@ -143,10 +143,11 @@ class RootComplex(PciBridge2) :
     PXCAPRootControl = 0x0000 #PME related stuff again. Ignore for now. 
     
 
-class Switch(PciBridge2):
+class PCIESwitch(PciBridge2):
  
     
     is_switch = 1
+    pci_bus = 1
     pci_dev1 =  0
     pci_func1 = 0 
     pci_dev2 =  1 

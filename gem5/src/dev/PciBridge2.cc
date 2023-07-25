@@ -182,10 +182,10 @@ PciBridge2::PciBridge2(const PciBridge2Params &p)
     storage_ptr2->bridge = this ; 
     storage_ptr3->bridge = this ;
     storage_ptr4->bridge = this ;   
-    p.host->registerBridge(storage_ptr1 , storage_ptr1->BridgeAddr) ; //register the pci-pci bridge with the pci host for config acceses
-    p.host->registerBridge(storage_ptr2 , storage_ptr2->BridgeAddr) ; //register the pci-pci bridge with the pci host for config acceses
-    p.host->registerBridge(storage_ptr3 , storage_ptr3->BridgeAddr) ; //register the pci-pci bridge with the pci host for config acceses
-    if(p.is_switch) p.host->registerBridge(storage_ptr4 , storage_ptr4->BridgeAddr) ;
+    // p.host->registerBridge(storage_ptr1 , storage_ptr1->BridgeAddr) ; //register the pci-pci bridge with the pci host for config acceses
+    // p.host->registerBridge(storage_ptr2 , storage_ptr2->BridgeAddr) ; //register the pci-pci bridge with the pci host for config acceses
+    // p.host->registerBridge(storage_ptr3 , storage_ptr3->BridgeAddr) ; //register the pci-pci bridge with the pci host for config acceses
+    // if(p.is_switch) p.host->registerBridge(storage_ptr4 , storage_ptr4->BridgeAddr) ;
     rc_id = p.rc_id ; 
     is_switch = p.is_switch ; 
 
@@ -695,8 +695,8 @@ void
 PciBridge2::init()
 {
     // make sure both sides are connected and have the same block size
-    if (!responsePort.isConnected() || !responsePort_DMA1.isConnected() || !responsePort_DMA2.isConnected() || !responsePort_DMA3.isConnected() || !requestPort_DMA.isConnected() || !requestPort1.isConnected() || !requestPort2.isConnected() || !requestPort3.isConnected())
-        fatal("Both ports of a bridge must be connected.\n");
+    // if (!responsePort.isConnected() || !responsePort_DMA1.isConnected() || !responsePort_DMA2.isConnected() || !responsePort_DMA3.isConnected() || !requestPort_DMA.isConnected() || !requestPort1.isConnected() || !requestPort2.isConnected() || !requestPort3.isConnected())
+    //     fatal("Both ports of a bridge must be connected.\n");
 
     // notify the request side  of our address ranges
     responsePort.sendRangeChange();
@@ -1300,5 +1300,56 @@ PciBridge2::unserialize(CheckpointIn &cp)
 
 
 }
-    
+PciBridge2::PciBridgeRequestPort&
+PciBridge2::getRequestPort(const std::string &if_name, PortID idx)
+{
+    if (if_name == "request1")
+        return requestPort1;
+    else if(if_name == "request2")
+        return requestPort2 ; 
+    else if (if_name == "request3")
+        return requestPort3 ; 
+    else if (if_name == "request_dma")
+        return requestPort_DMA ; 
+    else
+        fatal("%s does not have any port named %s\n", name(), if_name);
+}
+
+PciBridge2::PciBridgeResponsePort&
+PciBridge2::getResponsePort(const std::string &if_name, PortID idx)
+{
+    if (if_name == "response")
+        return responsePort;
+    else if (if_name == "response_dma1")
+        return responsePort_DMA1 ;
+    else if (if_name == "response_dma2")
+        return responsePort_DMA2 ; 
+    else if (if_name == "response_dma3")
+        return responsePort_DMA3 ; 
+
+    else
+        fatal("%s does not have any port named %s\n", name(), if_name);
+}
+
+Port & PciBridge2::getPort(const std::string &if_name, PortID idx)
+{
+    if (if_name == "request1")
+        return requestPort1;
+    else if(if_name == "request2")
+        return requestPort2 ; 
+    else if (if_name == "request3")
+        return requestPort3 ; 
+    else if (if_name == "request_dma")
+        return requestPort_DMA ; 
+    else if (if_name == "response")
+        return responsePort;
+    else if (if_name == "response_dma1")
+        return responsePort_DMA1 ;
+    else if (if_name == "response_dma2")
+        return responsePort_DMA2 ; 
+    else if (if_name == "response_dma3")
+        return responsePort_DMA3 ; 
+    else
+        fatal("%s does not have any port named %s\n", name(), if_name);
+}
 }

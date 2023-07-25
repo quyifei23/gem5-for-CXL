@@ -57,20 +57,42 @@ system.system_port = system.membus.cpu_side_ports
 # system.PciBridge.receiveDownPort2
 # system.PciBridge.sendDownPort3
 # system.PciBridge.receiveDownPort3
+# system.PciBridge.sendUpPort = system.membus.cpu_side_ports
+# system.PciBridge.receiveUpPort = system.membus.mem_side_ports
 
-# try to create a PciHost for the system
-system.realview = platform_class()
+
 # use the version2 Pcibridge
+system.pcie1 = PCIELink(lanes = 2, speed = 5, mps=5, max_queue_size= 10)
+system.pcie2 = PCIELink(lanes = 2 , speed = 5, mps = 5, max_queue_size= 10)
+system.pcie3 = PCIELink(lanes = 2 , speed = 5,  mps = 5,max_queue_size= 10)
+system.pcie4 = PCIELink(lanes = 2 , speed = 5, mps = 5, max_queue_size= 10)
+system.pcie5 = PCIELink(lanes = 2 , speed = 5 ,mps = 5, max_queue_size= 10)
+system.pcie6 = PCIELink(lanes = 2 , speed = 5, mps = 5, max_queue_size= 10)
+
 system.RootComplex = RootComplex()
-# system.Switch = Switch()
+system.switch = PCIESwitch()
 
 system.RootComplex.response = system.membus.mem_side_ports
 system.RootComplex.request_dma = system.membus.cpu_side_ports
 
-# system.RootComplex.request1 = system.Switch.response
-# system.RootComplex.response_dma1 = system.Switch.request_dma
-# system.PciBridge.sendUpPort = system.membus.cpu_side_ports
-# system.PciBridge.receiveUpPort = system.membus.mem_side_ports
+system.RootComplex.response_dma1 = system.pcie1.upstreamRequest
+system.RootComplex.response_dma2 = system.pcie2.upstreamRequest
+system.RootComplex.response_dma3 = system.pcie3.upstreamRequest 
+system.RootComplex.request1    = system.pcie1.upstreamResponse 
+system.RootComplex.request2    = system.pcie2.upstreamResponse 
+system.RootComplex.request3    = system.pcie3.upstreamResponse 
+
+
+system.pcie1.downstreamRequest  = system.switch.response
+system.pcie1.downstreamResponse = system.switch.request_dma
+
+system.pcie4.downstreamRequest  = system.switch.response_dma1
+system.pcie4.downstreamResponse = system.switch.request1
+system.pcie5.downstreamRequest  = system.switch.response_dma2
+system.pcie5.downstreamResponse = system.switch.request2
+system.pcie6.downstreamRequest  = system.switch.response_dma3
+system.pcie6.downstreamResponse = system.switch.request3
+
 
 
 # Here we set the X86 "hello world" binary. With other ISAs you must specify

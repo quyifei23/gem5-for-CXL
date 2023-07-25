@@ -329,28 +329,90 @@ tooltip="clk_gate_bins&#61;20&#10;\clk_gate_max&#61;1000000000000&#10;\clk_gate_
 
 }
 
-subgraph cluster_system_PciHost {
-color="#000000";
-fillcolor="#c7a793";
-fontcolor="#000000";
-fontname=Arial;
-fontsize=14;
-label="PciHost \n: PciHost";
-shape=box;
-style="rounded, filled";
-tooltip="clk_domain&#61;system.clk_domain&#10;\eventq_index&#61;0&#10;\power_model&#61;&#10;\power_state&#61;system.PciHost.power_state&#10;\system&#61;system";
-subgraph cluster_system_PciHost_power_state {
+subgraph cluster_system_pcie1 {
 color="#000000";
 fillcolor="#bab6ae";
 fontcolor="#000000";
 fontname=Arial;
 fontsize=14;
-label="power_state \n: PowerState";
+label="pcie1 \n: PCIELink";
 shape=box;
 style="rounded, filled";
-tooltip="clk_gate_bins&#61;20&#10;\clk_gate_max&#61;1000000000000&#10;\clk_gate_min&#61;1000&#10;\default_state&#61;UNDEFINED&#10;\eventq_index&#61;0&#10;\leaders&#61;&#10;\possible_states&#61;";
+tooltip="delay&#61;0&#10;\delay_var&#61;0&#10;\eventq_index&#61;0&#10;\lanes&#61;2&#10;\max_queue_size&#61;10&#10;\mps&#61;5&#10;\speed&#61;5.0";
+system_pcie1_upstreamResponse [color="#000000", fillcolor="#94918b", fontcolor="#000000", fontname=Arial, fontsize=14, label=upstreamResponse, shape=box, style="rounded, filled"];
+system_pcie1_downstreamResponse [color="#000000", fillcolor="#94918b", fontcolor="#000000", fontname=Arial, fontsize=14, label=downstreamResponse, shape=box, style="rounded, filled"];
+system_pcie1_upstreamRequest [color="#000000", fillcolor="#94918b", fontcolor="#000000", fontname=Arial, fontsize=14, label=upstreamRequest, shape=box, style="rounded, filled"];
+system_pcie1_downstreamRequest [color="#000000", fillcolor="#94918b", fontcolor="#000000", fontname=Arial, fontsize=14, label=downstreamRequest, shape=box, style="rounded, filled"];
 }
 
+subgraph cluster_system_pcie2 {
+color="#000000";
+fillcolor="#bab6ae";
+fontcolor="#000000";
+fontname=Arial;
+fontsize=14;
+label="pcie2 \n: PCIELink";
+shape=box;
+style="rounded, filled";
+tooltip="delay&#61;0&#10;\delay_var&#61;0&#10;\eventq_index&#61;0&#10;\lanes&#61;2&#10;\max_queue_size&#61;10&#10;\mps&#61;5&#10;\speed&#61;5.0";
+system_pcie2_upstreamResponse [color="#000000", fillcolor="#94918b", fontcolor="#000000", fontname=Arial, fontsize=14, label=upstreamResponse, shape=box, style="rounded, filled"];
+system_pcie2_upstreamRequest [color="#000000", fillcolor="#94918b", fontcolor="#000000", fontname=Arial, fontsize=14, label=upstreamRequest, shape=box, style="rounded, filled"];
+}
+
+subgraph cluster_system_pcie3 {
+color="#000000";
+fillcolor="#bab6ae";
+fontcolor="#000000";
+fontname=Arial;
+fontsize=14;
+label="pcie3 \n: PCIELink";
+shape=box;
+style="rounded, filled";
+tooltip="delay&#61;0&#10;\delay_var&#61;0&#10;\eventq_index&#61;0&#10;\lanes&#61;2&#10;\max_queue_size&#61;10&#10;\mps&#61;5&#10;\speed&#61;5.0";
+system_pcie3_upstreamResponse [color="#000000", fillcolor="#94918b", fontcolor="#000000", fontname=Arial, fontsize=14, label=upstreamResponse, shape=box, style="rounded, filled"];
+system_pcie3_upstreamRequest [color="#000000", fillcolor="#94918b", fontcolor="#000000", fontname=Arial, fontsize=14, label=upstreamRequest, shape=box, style="rounded, filled"];
+}
+
+subgraph cluster_system_pcie4 {
+color="#000000";
+fillcolor="#bab6ae";
+fontcolor="#000000";
+fontname=Arial;
+fontsize=14;
+label="pcie4 \n: PCIELink";
+shape=box;
+style="rounded, filled";
+tooltip="delay&#61;0&#10;\delay_var&#61;0&#10;\eventq_index&#61;0&#10;\lanes&#61;2&#10;\max_queue_size&#61;10&#10;\mps&#61;5&#10;\speed&#61;5.0";
+system_pcie4_downstreamResponse [color="#000000", fillcolor="#94918b", fontcolor="#000000", fontname=Arial, fontsize=14, label=downstreamResponse, shape=box, style="rounded, filled"];
+system_pcie4_downstreamRequest [color="#000000", fillcolor="#94918b", fontcolor="#000000", fontname=Arial, fontsize=14, label=downstreamRequest, shape=box, style="rounded, filled"];
+}
+
+subgraph cluster_system_pcie5 {
+color="#000000";
+fillcolor="#bab6ae";
+fontcolor="#000000";
+fontname=Arial;
+fontsize=14;
+label="pcie5 \n: PCIELink";
+shape=box;
+style="rounded, filled";
+tooltip="delay&#61;0&#10;\delay_var&#61;0&#10;\eventq_index&#61;0&#10;\lanes&#61;2&#10;\max_queue_size&#61;10&#10;\mps&#61;5&#10;\speed&#61;5.0";
+system_pcie5_downstreamResponse [color="#000000", fillcolor="#94918b", fontcolor="#000000", fontname=Arial, fontsize=14, label=downstreamResponse, shape=box, style="rounded, filled"];
+system_pcie5_downstreamRequest [color="#000000", fillcolor="#94918b", fontcolor="#000000", fontname=Arial, fontsize=14, label=downstreamRequest, shape=box, style="rounded, filled"];
+}
+
+subgraph cluster_system_pcie6 {
+color="#000000";
+fillcolor="#bab6ae";
+fontcolor="#000000";
+fontname=Arial;
+fontsize=14;
+label="pcie6 \n: PCIELink";
+shape=box;
+style="rounded, filled";
+tooltip="delay&#61;0&#10;\delay_var&#61;0&#10;\eventq_index&#61;0&#10;\lanes&#61;2&#10;\max_queue_size&#61;10&#10;\mps&#61;5&#10;\speed&#61;5.0";
+system_pcie6_downstreamResponse [color="#000000", fillcolor="#94918b", fontcolor="#000000", fontname=Arial, fontsize=14, label=downstreamResponse, shape=box, style="rounded, filled"];
+system_pcie6_downstreamRequest [color="#000000", fillcolor="#94918b", fontcolor="#000000", fontname=Arial, fontsize=14, label=downstreamRequest, shape=box, style="rounded, filled"];
 }
 
 subgraph cluster_system_RootComplex {
@@ -362,9 +424,35 @@ fontsize=14;
 label="RootComplex \n: RootComplex";
 shape=box;
 style="rounded, filled";
-tooltip="BAR0Size&#61;0&#10;\BAR1Size&#61;0&#10;\BIST&#61;0&#10;\Bar0&#61;0&#10;\Bar1&#61;0&#10;\BridgeControl&#61;0&#10;\CacheLineSize&#61;0&#10;\CapabilityPointer&#61;208&#10;\ClassCode&#61;6&#10;\Command&#61;1031&#10;\DeviceId1&#61;40080&#10;\DeviceId2&#61;40082&#10;\DeviceId3&#61;40084&#10;\DeviceId_upstream&#61;33330&#10;\ExpansionROMBaseAddress&#61;0&#10;\HeaderType&#61;1&#10;\IOBase&#61;1&#10;\IOBaseUpper&#61;12032&#10;\IOLimit&#61;1&#10;\IOLimitUpper&#61;12032&#10;\InterruptLine&#61;32&#10;\InterruptPin&#61;1&#10;\LatencyTimer&#61;0&#10;\MemoryBase&#61;0&#10;\MemoryLimit&#61;0&#10;\PXCAPBaseOffset&#61;208&#10;\PXCAPCapId&#61;16&#10;\PXCAPCapabilities&#61;65&#10;\PXCAPCapabilities_downstream&#61;97&#10;\PXCAPCapabilities_upstream&#61;81&#10;\PXCAPDevCap2&#61;0&#10;\PXCAPDevCapabilities&#61;577&#10;\PXCAPDevCtrl&#61;4128&#10;\PXCAPDevCtrl2&#61;0&#10;\PXCAPDevStatus&#61;0&#10;\PXCAPLinkCap&#61;16814097&#10;\PXCAPLinkCtrl&#61;8&#10;\PXCAPLinkStatus&#61;17&#10;\PXCAPNextCapability&#61;0&#10;\PXCAPRootControl&#61;0&#10;\PXCAPRootStatus&#61;0&#10;\PrefetchableMemoryBase&#61;0&#10;\PrefetchableMemoryBaseUpper&#61;0&#10;\PrefetchableMemoryLimit&#61;0&#10;\PrefetchableMemoryLimitUpper&#61;0&#10;\PrimaryBusNumber&#61;0&#10;\ProgIF&#61;0&#10;\Revision&#61;0&#10;\SecondaryBusNumber&#61;0&#10;\SecondaryLatencyTimer&#61;0&#10;\SecondaryStatus&#61;0&#10;\Status&#61;16&#10;\SubClassCode&#61;4&#10;\SubordinateBusNumber&#61;0&#10;\VendorId&#61;32902&#10;\config_latency&#61;20000&#10;\delay&#61;0&#10;\eventq_index&#61;0&#10;\host&#61;system.PciHost&#10;\is_switch&#61;0&#10;\is_transmit&#61;0&#10;\pci_bus&#61;0&#10;\pci_dev1&#61;4&#10;\pci_dev2&#61;5&#10;\pci_dev3&#61;6&#10;\pci_func1&#61;0&#10;\pci_func2&#61;0&#10;\pci_func3&#61;0&#10;\pci_upstream_dev&#61;0&#10;\pci_upstream_func&#61;0&#10;\rc_id&#61;0&#10;\req_size&#61;16&#10;\resp_size&#61;16";
+tooltip="BAR0Size&#61;0&#10;\BAR1Size&#61;0&#10;\BIST&#61;0&#10;\Bar0&#61;0&#10;\Bar1&#61;0&#10;\BridgeControl&#61;0&#10;\CacheLineSize&#61;0&#10;\CapabilityPointer&#61;208&#10;\ClassCode&#61;6&#10;\Command&#61;1031&#10;\DeviceId1&#61;40080&#10;\DeviceId2&#61;40082&#10;\DeviceId3&#61;40084&#10;\DeviceId_upstream&#61;33330&#10;\ExpansionROMBaseAddress&#61;0&#10;\HeaderType&#61;1&#10;\IOBase&#61;1&#10;\IOBaseUpper&#61;12032&#10;\IOLimit&#61;1&#10;\IOLimitUpper&#61;12032&#10;\InterruptLine&#61;32&#10;\InterruptPin&#61;1&#10;\LatencyTimer&#61;0&#10;\MemoryBase&#61;0&#10;\MemoryLimit&#61;0&#10;\PXCAPBaseOffset&#61;208&#10;\PXCAPCapId&#61;16&#10;\PXCAPCapabilities&#61;65&#10;\PXCAPCapabilities_downstream&#61;97&#10;\PXCAPCapabilities_upstream&#61;81&#10;\PXCAPDevCap2&#61;0&#10;\PXCAPDevCapabilities&#61;577&#10;\PXCAPDevCtrl&#61;4128&#10;\PXCAPDevCtrl2&#61;0&#10;\PXCAPDevStatus&#61;0&#10;\PXCAPLinkCap&#61;16814097&#10;\PXCAPLinkCtrl&#61;8&#10;\PXCAPLinkStatus&#61;17&#10;\PXCAPNextCapability&#61;0&#10;\PXCAPRootControl&#61;0&#10;\PXCAPRootStatus&#61;0&#10;\PrefetchableMemoryBase&#61;0&#10;\PrefetchableMemoryBaseUpper&#61;0&#10;\PrefetchableMemoryLimit&#61;0&#10;\PrefetchableMemoryLimitUpper&#61;0&#10;\PrimaryBusNumber&#61;0&#10;\ProgIF&#61;0&#10;\Revision&#61;0&#10;\SecondaryBusNumber&#61;0&#10;\SecondaryLatencyTimer&#61;0&#10;\SecondaryStatus&#61;0&#10;\Status&#61;16&#10;\SubClassCode&#61;4&#10;\SubordinateBusNumber&#61;0&#10;\VendorId&#61;32902&#10;\config_latency&#61;20000&#10;\delay&#61;0&#10;\eventq_index&#61;0&#10;\is_switch&#61;0&#10;\is_transmit&#61;0&#10;\pci_bus&#61;0&#10;\pci_dev1&#61;4&#10;\pci_dev2&#61;5&#10;\pci_dev3&#61;6&#10;\pci_func1&#61;0&#10;\pci_func2&#61;0&#10;\pci_func3&#61;0&#10;\pci_upstream_dev&#61;0&#10;\pci_upstream_func&#61;0&#10;\rc_id&#61;0&#10;\req_size&#61;16&#10;\resp_size&#61;16";
 system_RootComplex_response [color="#000000", fillcolor="#94918b", fontcolor="#000000", fontname=Arial, fontsize=14, label=response, shape=box, style="rounded, filled"];
+system_RootComplex_request1 [color="#000000", fillcolor="#94918b", fontcolor="#000000", fontname=Arial, fontsize=14, label=request1, shape=box, style="rounded, filled"];
+system_RootComplex_request2 [color="#000000", fillcolor="#94918b", fontcolor="#000000", fontname=Arial, fontsize=14, label=request2, shape=box, style="rounded, filled"];
+system_RootComplex_request3 [color="#000000", fillcolor="#94918b", fontcolor="#000000", fontname=Arial, fontsize=14, label=request3, shape=box, style="rounded, filled"];
+system_RootComplex_response_dma1 [color="#000000", fillcolor="#94918b", fontcolor="#000000", fontname=Arial, fontsize=14, label=response_dma1, shape=box, style="rounded, filled"];
 system_RootComplex_request_dma [color="#000000", fillcolor="#94918b", fontcolor="#000000", fontname=Arial, fontsize=14, label=request_dma, shape=box, style="rounded, filled"];
+system_RootComplex_response_dma2 [color="#000000", fillcolor="#94918b", fontcolor="#000000", fontname=Arial, fontsize=14, label=response_dma2, shape=box, style="rounded, filled"];
+system_RootComplex_response_dma3 [color="#000000", fillcolor="#94918b", fontcolor="#000000", fontname=Arial, fontsize=14, label=response_dma3, shape=box, style="rounded, filled"];
+}
+
+subgraph cluster_system_switch {
+color="#000000";
+fillcolor="#bab6ae";
+fontcolor="#000000";
+fontname=Arial;
+fontsize=14;
+label="switch \n: PCIESwitch";
+shape=box;
+style="rounded, filled";
+tooltip="BAR0Size&#61;0&#10;\BAR1Size&#61;0&#10;\BIST&#61;0&#10;\Bar0&#61;0&#10;\Bar1&#61;0&#10;\BridgeControl&#61;0&#10;\CacheLineSize&#61;0&#10;\CapabilityPointer&#61;208&#10;\ClassCode&#61;6&#10;\Command&#61;1031&#10;\DeviceId1&#61;33331&#10;\DeviceId2&#61;33331&#10;\DeviceId3&#61;33331&#10;\DeviceId_upstream&#61;33330&#10;\ExpansionROMBaseAddress&#61;0&#10;\HeaderType&#61;1&#10;\IOBase&#61;1&#10;\IOBaseUpper&#61;12032&#10;\IOLimit&#61;1&#10;\IOLimitUpper&#61;12032&#10;\InterruptLine&#61;32&#10;\InterruptPin&#61;1&#10;\LatencyTimer&#61;0&#10;\MemoryBase&#61;0&#10;\MemoryLimit&#61;0&#10;\PXCAPBaseOffset&#61;208&#10;\PXCAPCapId&#61;16&#10;\PXCAPCapabilities&#61;0&#10;\PXCAPCapabilities_downstream&#61;97&#10;\PXCAPCapabilities_upstream&#61;81&#10;\PXCAPDevCap2&#61;0&#10;\PXCAPDevCapabilities&#61;0&#10;\PXCAPDevCtrl&#61;4128&#10;\PXCAPDevCtrl2&#61;0&#10;\PXCAPDevStatus&#61;0&#10;\PXCAPLinkCap&#61;16814097&#10;\PXCAPLinkCtrl&#61;8&#10;\PXCAPLinkStatus&#61;17&#10;\PXCAPNextCapability&#61;0&#10;\PXCAPRootControl&#61;0&#10;\PXCAPRootStatus&#61;0&#10;\PrefetchableMemoryBase&#61;0&#10;\PrefetchableMemoryBaseUpper&#61;0&#10;\PrefetchableMemoryLimit&#61;0&#10;\PrefetchableMemoryLimitUpper&#61;0&#10;\PrimaryBusNumber&#61;0&#10;\ProgIF&#61;0&#10;\Revision&#61;0&#10;\SecondaryBusNumber&#61;0&#10;\SecondaryLatencyTimer&#61;0&#10;\SecondaryStatus&#61;0&#10;\Status&#61;16&#10;\SubClassCode&#61;4&#10;\SubordinateBusNumber&#61;0&#10;\VendorId&#61;4172&#10;\config_latency&#61;20000&#10;\delay&#61;0&#10;\eventq_index&#61;0&#10;\is_switch&#61;1&#10;\is_transmit&#61;0&#10;\pci_bus&#61;1&#10;\pci_dev1&#61;0&#10;\pci_dev2&#61;1&#10;\pci_dev3&#61;2&#10;\pci_func1&#61;0&#10;\pci_func2&#61;0&#10;\pci_func3&#61;0&#10;\pci_upstream_dev&#61;0&#10;\pci_upstream_func&#61;0&#10;\rc_id&#61;0&#10;\req_size&#61;16&#10;\resp_size&#61;16";
+system_switch_response [color="#000000", fillcolor="#94918b", fontcolor="#000000", fontname=Arial, fontsize=14, label=response, shape=box, style="rounded, filled"];
+system_switch_request1 [color="#000000", fillcolor="#94918b", fontcolor="#000000", fontname=Arial, fontsize=14, label=request1, shape=box, style="rounded, filled"];
+system_switch_request2 [color="#000000", fillcolor="#94918b", fontcolor="#000000", fontname=Arial, fontsize=14, label=request2, shape=box, style="rounded, filled"];
+system_switch_request3 [color="#000000", fillcolor="#94918b", fontcolor="#000000", fontname=Arial, fontsize=14, label=request3, shape=box, style="rounded, filled"];
+system_switch_response_dma1 [color="#000000", fillcolor="#94918b", fontcolor="#000000", fontname=Arial, fontsize=14, label=response_dma1, shape=box, style="rounded, filled"];
+system_switch_request_dma [color="#000000", fillcolor="#94918b", fontcolor="#000000", fontname=Arial, fontsize=14, label=request_dma, shape=box, style="rounded, filled"];
+system_switch_response_dma2 [color="#000000", fillcolor="#94918b", fontcolor="#000000", fontname=Arial, fontsize=14, label=response_dma2, shape=box, style="rounded, filled"];
+system_switch_response_dma3 [color="#000000", fillcolor="#94918b", fontcolor="#000000", fontname=Arial, fontsize=14, label=response_dma3, shape=box, style="rounded, filled"];
 }
 
 subgraph cluster_system_workload {
@@ -392,4 +480,18 @@ system_membus_mem_side_ports -> system_cpu_interrupts_pio  [dir=forward];
 system_membus_mem_side_ports -> system_cpu_interrupts_int_responder  [dir=forward];
 system_membus_mem_side_ports -> system_mem_ctrl_port  [dir=forward];
 system_membus_mem_side_ports -> system_RootComplex_response  [dir=forward];
+system_pcie1_upstreamResponse -> system_RootComplex_request1  [dir=back];
+system_pcie1_upstreamRequest -> system_RootComplex_response_dma1  [dir=forward];
+system_pcie2_upstreamResponse -> system_RootComplex_request2  [dir=back];
+system_pcie2_upstreamRequest -> system_RootComplex_response_dma2  [dir=forward];
+system_pcie3_upstreamResponse -> system_RootComplex_request3  [dir=back];
+system_pcie3_upstreamRequest -> system_RootComplex_response_dma3  [dir=forward];
+system_switch_response -> system_pcie1_downstreamRequest  [dir=back];
+system_switch_request1 -> system_pcie4_downstreamResponse  [dir=forward];
+system_switch_request2 -> system_pcie5_downstreamResponse  [dir=forward];
+system_switch_request3 -> system_pcie6_downstreamResponse  [dir=forward];
+system_switch_response_dma1 -> system_pcie4_downstreamRequest  [dir=back];
+system_switch_request_dma -> system_pcie1_downstreamResponse  [dir=forward];
+system_switch_response_dma2 -> system_pcie5_downstreamRequest  [dir=back];
+system_switch_response_dma3 -> system_pcie6_downstreamRequest  [dir=back];
 }

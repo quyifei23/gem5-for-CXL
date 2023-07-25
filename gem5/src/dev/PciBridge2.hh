@@ -359,7 +359,11 @@ namespace gem5
 
                 PciBridgeRequestPort * getRequestPort(Addr address);
                 PciBridgeResponsePort * getResponsePort(int bus_num);
-                
+                virtual PciBridgeRequestPort& getRequestPort(const std::string& if_name,
+                                          PortID idx = InvalidPortID);
+                virtual PciBridgeResponsePort& getResponsePort(const std::string& if_name,
+                                        PortID idx = InvalidPortID);
+                Port & getPort(const std::string &if_name, PortID idx=InvalidPortID) override;
                 virtual void init();
                 config_class * storage_ptr1 ; // create a new config_class when the bridge corresponding to a root port is created. 
                 config_class * storage_ptr2 ; // Configuration for root port 2 

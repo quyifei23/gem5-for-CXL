@@ -65,6 +65,11 @@ Source('PciBridge2.cc')
 DebugFlag('PciBridge2')
 
 
+# add for PCIe link
+SimObject('pcie_link.py',sim_objects=['PCIELink'])
+Source('pcie_link.cc')
+DebugFlag('PCIELink')
+
 
 GTest('reg_bank.test', 'reg_bank.test.cc')
 
