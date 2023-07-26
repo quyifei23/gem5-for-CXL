@@ -1,7 +1,15 @@
 from m5.params import *
 from m5.SimObject import *
 from m5.proxy import *
+from m5.objects.PciHost import GenericPciHost
+from m5.objects.Platform import Platform
 
+
+class PcPciHost(GenericPciHost):
+    conf_base = 0xC000000000000000
+    conf_size = "16MiB"
+
+    pci_pio_base = 0x8000000000000000
 class PciBridge2(SimObject):
     type = 'PciBridge2'
     #abstract = True
@@ -22,7 +30,7 @@ class PciBridge2(SimObject):
     pci_func2 = Param.Int("PCI func number")
     pci_dev3  = Param.Int("PCi dev")
     pci_func3 = Param.Int("PCI function") 
-    # host = Param.PciHost(Parent.any, "PCI host")
+    host = Param.PciHost(Parent.any, "PCI host")
     DeviceId1 = Param.UInt16("Bridge's device id") # For Root port 1
     DeviceId2 = Param.UInt16("Bridge's device id") #For Root port 2
     DeviceId3 = Param.UInt16("Bridge's device id") #For Root port 3
@@ -142,6 +150,7 @@ class RootComplex(PciBridge2) :
     PXCAPRootStatus = 0x00000000 #PME related stuff. Ignore for now
     PXCAPRootControl = 0x0000 #PME related stuff again. Ignore for now. 
     
+
 
 class PCIESwitch(PciBridge2):
  

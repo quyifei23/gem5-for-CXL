@@ -182,10 +182,10 @@ PciBridge2::PciBridge2(const PciBridge2Params &p)
     storage_ptr2->bridge = this ; 
     storage_ptr3->bridge = this ;
     storage_ptr4->bridge = this ;   
-    // p.host->registerBridge(storage_ptr1 , storage_ptr1->BridgeAddr) ; //register the pci-pci bridge with the pci host for config acceses
-    // p.host->registerBridge(storage_ptr2 , storage_ptr2->BridgeAddr) ; //register the pci-pci bridge with the pci host for config acceses
-    // p.host->registerBridge(storage_ptr3 , storage_ptr3->BridgeAddr) ; //register the pci-pci bridge with the pci host for config acceses
-    // if(p.is_switch) p.host->registerBridge(storage_ptr4 , storage_ptr4->BridgeAddr) ;
+    p.host->registerBridge(storage_ptr1 , storage_ptr1->BridgeAddr) ; //register the pci-pci bridge with the pci host for config acceses
+    p.host->registerBridge(storage_ptr2 , storage_ptr2->BridgeAddr) ; //register the pci-pci bridge with the pci host for config acceses
+    p.host->registerBridge(storage_ptr3 , storage_ptr3->BridgeAddr) ; //register the pci-pci bridge with the pci host for config acceses
+    if(p.is_switch) p.host->registerBridge(storage_ptr4 , storage_ptr4->BridgeAddr) ;
     rc_id = p.rc_id ; 
     is_switch = p.is_switch ; 
 
