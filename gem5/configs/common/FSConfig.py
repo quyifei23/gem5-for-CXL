@@ -227,6 +227,13 @@ def makeArmSystem(
 
     self.readfile = mdesc.script()
     self.iobus = IOXBar()
+    self.pcie1 = PCIELink(lanes = 2, speed = 5, mps=5, max_queue_size= 10)
+    self.pcie2 = PCIELink(lanes = 2 , speed = 5, mps = 5, max_queue_size= 10)
+    self.pcie3 = PCIELink(lanes = 2 , speed = 5,  mps = 5,max_queue_size= 10)
+    self.pcie4 = PCIELink(lanes = 2 , speed = 5, mps = 5, max_queue_size= 10)
+    self.pcie5 = PCIELink(lanes = 2 , speed = 5 ,mps = 5, max_queue_size= 10)
+    self.pcie6 = PCIELink(lanes = 2 , speed = 5, mps = 5, max_queue_size= 10)
+
     if not ruby:
         self.bridge = Bridge(delay="50ns")
         self.bridge.mem_side_port = self.iobus.cpu_side_ports
@@ -241,8 +248,42 @@ def makeArmSystem(
     # variable might have been an alias.
     machine_type = platform_class.__name__
     self.realview = platform_class()
-    self._bootmem = self.realview.bootmem
 
+
+    self.RootComplex = RootComplex()
+    self.switch = PCIESwitch()
+    self.RootComplex.host = self.realview.pci_host
+    self.switch.host = self.realview.pci_host
+    self.RootComplex.response = self.membus.mem_side_ports
+    self.RootComplex.request_dma = self.membus.cpu_side_ports
+
+    self.RootComplex.response_dma1 = self.pcie1.upstreamRequest
+    self.RootComplex.response_dma2 = self.pcie2.upstreamRequest
+    self.RootComplex.response_dma3 = self.pcie3.upstreamRequest 
+    self.RootComplex.request1    = self.pcie1.upstreamResponse 
+    self.RootComplex.request2    = self.pcie2.upstreamResponse 
+    self.RootComplex.request3    = self.pcie3.upstreamResponse 
+
+
+    self.pcie1.downstreamRequest  = self.switch.response
+    self.pcie1.downstreamResponse = self.switch.request_dma
+
+    self.pcie4.upstreamRequest  = self.switch.response_dma1
+    self.pcie4.upstreamResponse = self.switch.request1
+    self.pcie5.upstreamRequest  = self.switch.response_dma2
+    self.pcie5.upstreamResponse = self.switch.request2
+    self.pcie6.upstreamRequest  = self.switch.response_dma3
+    self.pcie6.upstreamResponse = self.switch.request3
+
+    self.realview.cxlmemdevice1 = CxlMemory(pci_bus = 3,pci_dev=0, pci_func=0, InterruptLine=2, InterruptPin=1)
+    self.realview.cxlmemdevice1.pio = self.pcie3.downstreamRequest
+    self.realview.cxlmemdevice1.dma = self.pcie3.downstreamResponse
+    self.realview.cxlmemdevice1.host = self.realview.pci_host
+
+    self.realview.cxlmemdevice2 = CxlMemory(pci_bus = 4,pci_dev=0, pci_func=0, InterruptLine=2, InterruptPin=1)
+    self.realview.cxlmemdevice2.pio = self.pcie4.downstreamRequest
+    self.realview.cxlmemdevice2.dma = self.pcie4.downstreamResponse
+    self.realview.cxlmemdevice2.host = self.realview.pci_host
     # Attach any PCI devices this platform supports
     self.realview.attachPciDevices()
 

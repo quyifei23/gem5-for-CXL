@@ -94,7 +94,8 @@ system.pcie6.downstreamRequest  = system.switch.response_dma3
 system.pcie6.downstreamResponse = system.switch.request3
 
 
-
+# try to add Cxl Memory to the system
+# system.RootComplex.device1= CxlMemory()
 # Here we set the X86 "hello world" binary. With other ISAs you must specify
 # workloads compiled to those ISAs. Other "hello world" binaries for other ISAs
 # can be found in "tests/test-progs/hello".
