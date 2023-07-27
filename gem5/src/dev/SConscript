@@ -60,7 +60,7 @@ Source('PciBridge.cc')
 DebugFlag('PciBridge')
 
 # add for PciBridge2
-SimObject('PciBridge2.py',sim_objects=['PciBridge2'])
+SimObject('PciBridge2.py',sim_objects=['PciBridge2','RootComplex'])
 Source('PciBridge2.cc')
 DebugFlag('PciBridge2')
 
