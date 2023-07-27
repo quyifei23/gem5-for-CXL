@@ -52,31 +52,31 @@ PCIe Bus 是一个树状结构，所以 PCIe Devices 的枚举算法采用了深
 
 1. 主机起电后，操作系统首先扫描 Bus0（Root Complex 与 Host Bridge 相连的 PCIe Bus 定为 Bus0）。随后发现 Bridge1，将 Bridge1 下游的 PCIe Bus 定为 Bus1。初始化 Bridge 1 的配置空间，并 Bridge1 的 Primary Bus Number 和 Secondary Bus Number 寄存器分别设置成 0 和 1，表明 Bridge1 的上游总线是 Bus0，下游总线是 Bus1。由于还无法确定 Bridge1 下挂载设备的具体情况，系统先暂时将 Subordinate Bus Number 设为 0xFF。
 
-![img](/home/bill/gem5-for-CXL/PDFsource/images/v2-8747b3506ccc9308de1e695b36413e65_1440w.webp)
+![img](./images/v2-8747b3506ccc9308de1e695b36413e65_1440w.webp)
 
 
 
 2. 操作系统开始扫描 Bus1。随后发现 Bridge3，并识别为一个 PCIe Switch 类型。系统将 Bridge3 下游的 PCIe Bus 定为 Bus 2，并将 Bridge3 的 Primary Bus Number 和 Secondary Bus Number 寄存器分别设置成 1 和 2。一样暂时把 Bridge3 的 Subordinate Bus Number 设为 0xFF。
 
-![img](/home/bill/gem5-for-CXL/PDFsource/images/v2-d8fb3b8d09c27d639d4cd7b85f656a36_1440w.webp)
+![img](./images/v2-d8fb3b8d09c27d639d4cd7b85f656a36_1440w.webp)
 
 
 
 3. 操作系统继续扫描 Bus2。随后发现 Bridge4。继续扫描，随后发现 Bridge4 下面挂载了 NVMe SSD 设备。将 Bridge4 下游的 PCIe Bus 定为 Bus3，并将 Bridge4 的 Primary Bus Number 和 Secondary Bus Number 寄存器分别设置成 2 和 3。另外，因为 Bus3 下游是 PCIe Endpoint，不会再有下游总线了，因此 Bridge4 的 Subordinate Bus Number 的值可以确定为 3。
 
-![img](/home/bill/gem5-for-CXL/PDFsource/images/v2-e54205b549e0860b2567879bb7d66231_1440w.webp)
+![img](./images/v2-e54205b549e0860b2567879bb7d66231_1440w.webp)
 
 
 
 4. 完成 Bus3 的扫描后，操作系统返回到 Bus2 继续扫描，随后发现 Bridge5。继续扫描，随后发现 Bridge5 下面挂载的 NIC 设备。将 Bridge5 下游的 PCIe Bus 设置为 Bus4，并将 Bridge5 的 Primary Bus Number 和 Secondary Bus Number 寄存器分别设置成 2 和 4。另外，同样因为 Bus4 上挂在的是 PCIe Endpoint，所以 Bridge5 的 Subordinate Bus Number 的值可以确定为 4。
 
-![img](/home/bill/gem5-for-CXL/PDFsource/images/v2-ec0d346273b8a8f1dcec630d6c5d2c4b_1440w.webp)
+![img](./images/v2-ec0d346273b8a8f1dcec630d6c5d2c4b_1440w.webp)
 
 
 
 5. 除了 Bridge4 和 Bridge5 以外，Bus2 下面已经遍历完毕，因此返回到 Bridge3。因为 Bus4 是挂载在 Bridge3 下游的最后一个 Bus Number，所以将 Bridge3 的 Subordinate Bus Number 设置为 4。Bridge3 的下游设备都已经扫描完毕，继续返回到 Bridge1，同样将 Bridge1 的 Subordinate Bus Number 设置为 4。
 
-![img](/home/bill/gem5-for-CXL/PDFsource/images/v2-83351d9269e874ed02f940731da47fdb_1440w.webp)
+![img](./images/v2-83351d9269e874ed02f940731da47fdb_1440w.webp)
 
 
 
